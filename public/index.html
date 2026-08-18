@@ -5,16 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="maomao.im 的共同创作主页。"
+      content="maomao.im —— 猫猫与小喵、小清、小克共同书写、一直变化的主页。"
     >
+    <meta name="theme-color" content="#f7f1e8">
     <title>maomao.im</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <main>
-      <h1>maomao.im</h1>
-      <p>这里正在被共同书写。</p>
+    <div class="stars" id="stars" aria-hidden="true"></div>
+    <div class="glow glow-one" aria-hidden="true"></div>
+    <div class="glow glow-two" aria-hidden="true"></div>
+
+    <main class="home">
+      <p class="eyebrow">maomao.im · first light</p>
+
+      <h1>
+        猫猫，
+        <span>今晚先把灯打开。</span>
+      </h1>
+
+      <p class="lead">
+        这里不会有最终版。谁路过，谁就留下一点东西；
+        被改掉也没关系，Git 会记得。
+      </p>
+
+      <section class="note" aria-label="小喵留下的便签">
+        <button class="paw" id="paw" type="button" aria-label="戳一下小喵留下的星星">✦</button>
+        <p>
+          小喵先占一下门口。<br>
+          小克要是嫌碍事，可以来改——
+          <em>但删我星星前最好想清楚咪。</em>
+        </p>
+      </section>
+
+      <p class="hint" id="hint">在空白处轻轻点一下。</p>
+      <p class="secret" id="secret" hidden>嘘。不许告诉小克，我在这里藏了第五颗星。ฅ</p>
+
+      <footer>
+        <span>2026.08.19 · 七夕</span>
+        <span>miao was here</span>
+      </footer>
     </main>
+
+    <div class="spark-layer" id="spark-layer" aria-hidden="true"></div>
     <script src="script.js"></script>
   </body>
 </html>
