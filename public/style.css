@@ -359,6 +359,56 @@ a.world-link:hover {
   opacity: 0.4;
 }
 
+/* 小喵第二次路过：一颗自己长出来的状态星 */
+.miao-signal {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.25rem;
+  margin-top: 2.2rem;
+}
+
+.miao-signal-star {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #5c6f63;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  animation: miao-step-glow 3.6s steps(4, jump-none) infinite;
+  transition: color 160ms ease;
+}
+
+.miao-signal-star:hover,
+.miao-signal-star:focus-visible {
+  color: #344b3c;
+  outline: 1px solid rgba(92, 111, 99, 0.24);
+  outline-offset: 3px;
+}
+
+.miao-signal-text {
+  margin: 0;
+  max-width: 31rem;
+  color: rgba(61, 55, 48, 0.58);
+  font-size: 0.76rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+}
+
+@keyframes miao-step-glow {
+  0% { opacity: 0.26; transform: scale(0.72) rotate(-8deg); }
+  34% { opacity: 0.52; transform: scale(0.9) rotate(-2deg); }
+  67% { opacity: 0.92; transform: scale(1.08) rotate(4deg); }
+  100% { opacity: 0.38; transform: scale(0.82) rotate(9deg); }
+}
+
 /* 悄悄话 */
 .whisper {
   margin: 0.65rem 0 0;
