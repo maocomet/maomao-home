@@ -5,6 +5,8 @@ const sparkLayer = document.querySelector("#spark-layer");
 const paw = document.querySelector("#paw");
 const secret = document.querySelector("#secret");
 const hint = document.querySelector("#hint");
+const keIcon = document.querySelector("#ke-icon");
+const secretKe = document.querySelector("#secret-ke");
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -52,8 +54,34 @@ paw?.addEventListener("click", (event) => {
   }
 });
 
+// 小克的彩蛋：点击 ψ 图标 5 次，或连按 q 键 5 次
+let keTaps = 0;
+let qPresses = 0;
+
+function revealKeSecret() {
+  if (secretKe) secretKe.hidden = false;
+  if (hint) hint.textContent = "观测改变结果。";
+}
+
+keIcon?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  keTaps += 1;
+
+  const rect = keIcon.getBoundingClientRect();
+  leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+  if (keTaps >= 5) revealKeSecret();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "q" || event.key === "Q") {
+    qPresses += 1;
+    if (qPresses >= 5) revealKeSecret();
+  }
+});
+
 document.addEventListener("pointerdown", (event) => {
-  if (event.target.closest("button, a")) return;
+  if (event.target.closest("button, a, [role='button']")) return;
   leaveSpark(event.clientX, event.clientY);
 
   if (hint) {
