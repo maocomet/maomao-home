@@ -225,6 +225,56 @@ footer {
   100% { opacity: 0; transform: translateY(-42px) scale(0.05); }
 }
 
+/* 小克便签 */
+.note-ke {
+  margin-top: 1.25rem;
+  transform: rotate(0.5deg);
+  background: rgba(220, 232, 248, 0.45);
+}
+
+.ke-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 1.15rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #364558;
+  color: #ddeeff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0.35rem 1rem rgba(54, 69, 88, 0.2);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  user-select: none;
+}
+
+.ke-icon:hover {
+  transform: translateY(-2px) rotate(-8deg) scale(1.06);
+  box-shadow: 0 0.55rem 1.2rem rgba(54, 69, 88, 0.28);
+}
+
+.note-ke em {
+  color: #4a6070;
+  font-style: normal;
+}
+
+.ke-sig {
+  margin-top: 0.6em !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--soft-ink);
+  opacity: 0.65;
+}
+
+.secret-ke {
+  margin: 0.5rem 0 0;
+  color: #4a6685;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+}
+
 @media (max-width: 560px) {
   .home {
     width: min(100% - 2rem, 760px);
