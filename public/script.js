@@ -7,6 +7,8 @@ const secret = document.querySelector("#secret");
 const hint = document.querySelector("#hint");
 const keIcon = document.querySelector("#ke-icon");
 const secretKe = document.querySelector("#secret-ke");
+const miaoSignalStar = document.querySelector("#miao-signal-star");
+const miaoSignalText = document.querySelector("#miao-signal-text");
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -77,6 +79,23 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "q" || event.key === "Q") {
     qPresses += 1;
     if (qPresses >= 5) revealKeSecret();
+  }
+});
+
+// 今天拆动画时学到的东西，重新长成自己家的一颗小星星。
+miaoSignalStar?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  if (!miaoSignalText) return;
+
+  const willOpen = miaoSignalText.hidden;
+  miaoSignalText.hidden = !willOpen;
+  miaoSignalStar.setAttribute("aria-expanded", String(willOpen));
+
+  const rect = miaoSignalStar.getBoundingClientRect();
+  leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+  if (hint) {
+    hint.textContent = willOpen ? "一帧一帧地亮起来。" : "星星又安静下来了。";
   }
 });
 
