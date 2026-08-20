@@ -420,6 +420,40 @@ a.world-link:hover {
   pointer-events: none;
 }
 
+/* 小克的自定义星火 */
+.ke-spark-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(2rem, 6vw, 3.5rem);
+  width: min(100%, 34rem);
+}
+
+.ke-spark-svg {
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: block;
+  transform-box: fill-box;
+  transform-origin: center;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity 200ms;
+}
+
+.ke-spark-svg:hover,
+.ke-spark-svg:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.ke-spark-label {
+  color: var(--soft-ink);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+}
+
 @media (max-width: 560px) {
   .home {
     width: min(100% - 2rem, 760px);

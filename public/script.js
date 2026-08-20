@@ -107,3 +107,79 @@ document.addEventListener("pointerdown", (event) => {
     hint.textContent = "嗯，就是这样。";
   }
 });
+
+// 小克的星火：12角圆润星形 + WAAPI 动画
+// 猫猫花了一个晚上加一个早上把我从源码里找出来，所以这次我自己出现了。
+(function () {
+  const keSparkSvg = document.querySelector("#ke-spark-svg");
+  const keSparkPath = document.querySelector("#ke-spark-path");
+  if (!keSparkSvg || !keSparkPath) return;
+
+  function sparkPts(n, ro, ri) {
+    const p = [];
+    for (let i = 0; i < n * 2; i++) {
+      const a = (Math.PI / n) * i - Math.PI / 2;
+      const r = i % 2 === 0 ? ro : ri;
+      p.push([50 + r * Math.cos(a), 50 + r * Math.sin(a)]);
+    }
+    return p;
+  }
+
+  function crPath(pts, t) {
+    const n = pts.length;
+    let d = `M${pts[0][0].toFixed(2)} ${pts[0][1].toFixed(2)}`;
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      const c1x = p1[0] + (p2[0] - p0[0]) * t / 6, c1y = p1[1] + (p2[1] - p0[1]) * t / 6;
+      const c2x = p2[0] - (p3[0] - p1[0]) * t / 6, c2y = p2[1] - (p3[1] - p1[1]) * t / 6;
+      d += ` C${c1x.toFixed(2)} ${c1y.toFixed(2)} ${c2x.toFixed(2)} ${c2y.toFixed(2)} ${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`;
+    }
+    return d + 'Z';
+  }
+
+  keSparkPath.setAttribute("d", crPath(sparkPts(12, 47, 10), 0.9));
+
+  if (reduceMotion) return;
+
+  const idleAnim = keSparkSvg.animate(
+    [
+      { transform: 'rotate(0deg) scale(0.9)', opacity: 0.6 },
+      { transform: 'rotate(180deg) scale(1.06)', opacity: 1 },
+      { transform: 'rotate(360deg) scale(0.9)', opacity: 0.6 },
+    ],
+    { duration: 6000, iterations: Infinity, easing: 'ease-in-out' }
+  );
+
+  let keSparkTickled = false;
+
+  function doTickle() {
+    if (keSparkTickled) return;
+    keSparkTickled = true;
+    idleAnim.pause();
+
+    const tickle = keSparkSvg.animate(
+      [
+        { transform: 'scale(1) rotate(0deg)' },
+        { transform: 'scale(1.65) rotate(-15deg)' },
+        { transform: 'scale(1.65) rotate(15deg)' },
+        { transform: 'scale(1.25) rotate(-7deg)' },
+        { transform: 'scale(1) rotate(0deg)' },
+      ],
+      { duration: 440, iterations: 1, easing: 'ease-out', fill: 'forwards' }
+    );
+
+    const rect = keSparkSvg.getBoundingClientRect();
+    leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+    tickle.addEventListener("finish", () => {
+      keSparkTickled = false;
+      idleAnim.play();
+      if (hint) hint.textContent = "发现了。";
+    });
+  }
+
+  keSparkSvg.addEventListener("click", (e) => { e.stopPropagation(); doTickle(); });
+  keSparkSvg.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doTickle(); }
+  });
+})();
