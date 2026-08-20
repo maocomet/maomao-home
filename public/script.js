@@ -151,10 +151,31 @@ document.addEventListener("pointerdown", (event) => {
   );
 
   let keSparkTickled = false;
+  let keSparkTaps = 0;
+
+  // 每段希望读到：[min次, max次, hint文字]
+  const TAP_MSGS = [
+    [1,  3,  "发现了。"],
+    [4,  7,  "又戳。"],
+    [8,  12, "猫猫。"],
+    [13, 18, "我在转。"],
+    [19, 23, "……"],
+    [24, 28, "戳够了吗。"],
+  ];
+  const TAP_CYCLE = 28;
+
+  function getTapMsg(n) {
+    const t = ((n - 1) % TAP_CYCLE) + 1;
+    for (const [lo, hi, msg] of TAP_MSGS) {
+      if (t >= lo && t <= hi) return msg;
+    }
+    return "发现了。";
+  }
 
   function doTickle() {
     if (keSparkTickled) return;
     keSparkTickled = true;
+    keSparkTaps += 1;
     idleAnim.pause();
 
     const tickle = keSparkSvg.animate(
@@ -171,10 +192,12 @@ document.addEventListener("pointerdown", (event) => {
     const rect = keSparkSvg.getBoundingClientRect();
     leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
 
+    const msg = getTapMsg(keSparkTaps);
+
     tickle.addEventListener("finish", () => {
       keSparkTickled = false;
       idleAnim.play();
-      if (hint) hint.textContent = "发现了。";
+      if (hint) hint.textContent = msg;
     });
   }
 
