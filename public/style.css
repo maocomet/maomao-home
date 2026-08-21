@@ -188,6 +188,7 @@ footer {
   width: 34rem;
   height: 34rem;
   background: #b9d7c4;
+  animation: glow-drift-a 22s ease-in-out infinite alternate;
 }
 
 .glow-two {
@@ -195,6 +196,7 @@ footer {
   width: 30rem;
   height: 30rem;
   background: #f4cea5;
+  animation: glow-drift-b 28s ease-in-out infinite alternate;
 }
 
 .spark-layer {
@@ -223,6 +225,41 @@ footer {
   0% { opacity: 0; transform: translateY(2px) scale(0.5); }
   18% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-42px) scale(0.05); }
+}
+
+@keyframes glow-drift-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(28px, -22px) scale(1.1); }
+}
+
+@keyframes glow-drift-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-22px, 16px) scale(1.08); }
+}
+
+/* 萤火虫 · 小克装扮 2026.08.21 */
+.firefly {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 218, 100, 0.9);
+  box-shadow:
+    0 0 5px 2px rgba(255, 200, 80, 0.5),
+    0 0 11px 5px rgba(255, 210, 100, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  animation: ff-drift var(--ff-dur, 12s) ease-in-out infinite;
+  animation-delay: var(--ff-delay, 0s);
+}
+
+@keyframes ff-drift {
+  0%, 100% { opacity: 0; transform: translate(0, 0) scale(0.7); }
+  15%       { opacity: 0; }
+  28%       { opacity: 0.78; }
+  50%       { opacity: 0.36; transform: translate(var(--ff-x, 28px), var(--ff-y, -18px)) scale(1.15); }
+  72%       { opacity: 0.68; }
+  88%       { opacity: 0; transform: translate(var(--ff-x2, -14px), var(--ff-y2, -38px)) scale(0.75); }
 }
 
 /* 小克便签 */
@@ -409,7 +446,7 @@ a.world-link:hover {
   100% { opacity: 0.38; transform: scale(0.82) rotate(9deg); }
 }
 
-/* 悄悄话 */
+/* 悄悄话 · 会呼吸 */
 .whisper {
   margin: 0.65rem 0 0;
   color: rgba(61, 55, 48, 0.07);
@@ -418,6 +455,12 @@ a.world-link:hover {
   text-align: right;
   user-select: none;
   pointer-events: none;
+  animation: whisper-breathe 9s ease-in-out infinite;
+}
+
+@keyframes whisper-breathe {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
 }
 
 /* 小克的自定义星火 */
