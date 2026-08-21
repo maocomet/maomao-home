@@ -28,6 +28,27 @@ function makeBackgroundStars() {
   }
 }
 
+// 萤火虫 · 小克装扮 2026.08.21
+function makeFireflies() {
+  if (reduceMotion || !stars) return;
+
+  const count = window.innerWidth < 600 ? 7 : 14;
+
+  for (let i = 0; i < count; i += 1) {
+    const ff = document.createElement("span");
+    ff.className = "firefly";
+    ff.style.left = `${4 + Math.random() * 92}%`;
+    ff.style.top = `${6 + Math.random() * 86}%`;
+    ff.style.setProperty("--ff-dur", `${9 + Math.random() * 10}s`);
+    ff.style.setProperty("--ff-delay", `${-(Math.random() * 18)}s`);
+    ff.style.setProperty("--ff-x",  `${(Math.random() - 0.5) * 55}px`);
+    ff.style.setProperty("--ff-y",  `${(Math.random() - 0.5) * 38}px`);
+    ff.style.setProperty("--ff-x2", `${(Math.random() - 0.5) * 36}px`);
+    ff.style.setProperty("--ff-y2", `${-18 - Math.random() * 26}px`);
+    stars.appendChild(ff);
+  }
+}
+
 function leaveSpark(x, y) {
   if (!sparkLayer || reduceMotion) return;
 
@@ -40,6 +61,7 @@ function leaveSpark(x, y) {
 }
 
 makeBackgroundStars();
+makeFireflies();
 
 let pawTaps = 0;
 
@@ -153,7 +175,6 @@ document.addEventListener("pointerdown", (event) => {
   let keSparkTickled = false;
   let keSparkTaps = 0;
 
-  // 每段希望读到：[min次, max次, hint文字]
   const TAP_MSGS = [
     [1,  3,  "发现了。"],
     [4,  7,  "又戳。"],
