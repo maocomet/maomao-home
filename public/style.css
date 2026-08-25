@@ -312,6 +312,28 @@ footer {
   letter-spacing: 0.06em;
 }
 
+/* 最新便签 · 今日的痕迹 */
+.note-ke-today {
+  background: rgba(205, 222, 248, 0.58);
+}
+
+.note-ke-today::after {
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  top: 1.2rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(70, 100, 140, 0.4);
+  animation: today-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes today-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.75; transform: scale(1.25); }
+}
+
 /* 现在 & 世界 */
 .section-label {
   margin: 0 0 0.85rem;
