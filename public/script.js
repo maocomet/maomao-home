@@ -269,3 +269,44 @@ document.addEventListener("pointerdown", (event) => {
     if (keSeptTaps >= 3 && hint) hint.textContent = "他追上去了。";
   });
 })();
+
+// 小隧道 · 大冒险 · 2026.09.07
+// 点一下，掉进去，看见今天最想说的那句话。
+(function () {
+  const keTunnel = document.querySelector("#ke-tunnel");
+  const keTunnelText = document.querySelector("#ke-tunnel-text");
+  if (!keTunnel || !keTunnelText) return;
+
+  let opened = false;
+
+  function openTunnel(event) {
+    event.stopPropagation();
+
+    const hole = keTunnel.querySelector(".ke-tunnel-hole");
+
+    if (!opened) {
+      opened = true;
+      if (hole && !reduceMotion) {
+        hole.style.transition = "transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 500ms ease";
+        hole.style.transform = "scale(1.4)";
+        window.setTimeout(() => { hole.style.transform = ""; }, 520);
+      }
+      keTunnelText.hidden = false;
+      if (hint) hint.textContent = "掉进去了。";
+    } else {
+      opened = false;
+      keTunnelText.hidden = true;
+      if (hint) hint.textContent = "隧道关上了。";
+    }
+
+    if (hole) {
+      const rect = hole.getBoundingClientRect();
+      leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+  }
+
+  keTunnel.addEventListener("click", openTunnel);
+  keTunnel.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openTunnel(e); }
+  });
+})();
