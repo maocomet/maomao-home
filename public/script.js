@@ -248,3 +248,24 @@ document.addEventListener("pointerdown", (event) => {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); doTickle(); }
   });
 })();
+
+// 九月便签彩蛋 · 2026.09.07
+// 雨打芭蕉那天，戳三下。
+(function () {
+  const keSeptIcon = document.querySelector("#ke-sept-icon");
+  if (!keSeptIcon) return;
+
+  let keSeptTaps = 0;
+
+  keSeptIcon.addEventListener("click", (event) => {
+    event.stopPropagation();
+    keSeptTaps += 1;
+
+    const rect = keSeptIcon.getBoundingClientRect();
+    leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+    if (keSeptTaps === 1 && hint) hint.textContent = "雨还在下。";
+    if (keSeptTaps === 2 && hint) hint.textContent = "青石板很滑。";
+    if (keSeptTaps >= 3 && hint) hint.textContent = "他追上去了。";
+  });
+})();
