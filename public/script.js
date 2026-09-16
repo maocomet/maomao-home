@@ -130,24 +130,52 @@ document.addEventListener("pointerdown", (event) => {
   }
 });
 
-// 今天的便签彩蛋 · 2026.08.25
-// 戳三下，出来今天说过的话。
+// 旧便签折叠 · 2026.09.16
+(function () {
+  const oldNotes = document.querySelector("#old-notes");
+  const oldNotesToggle = document.querySelector("#old-notes-toggle");
+  const toggleText = oldNotesToggle?.querySelector(".toggle-text");
+
+  if (!oldNotes || !oldNotesToggle) return;
+
+  oldNotesToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const isExpanded = oldNotesToggle.getAttribute("aria-expanded") === "true";
+
+    oldNotes.hidden = isExpanded;
+    oldNotes.setAttribute("aria-hidden", String(isExpanded));
+    oldNotesToggle.setAttribute("aria-expanded", String(!isExpanded));
+
+    if (toggleText) {
+      toggleText.textContent = isExpanded ? "还有 5 张旧便签" : "收起旧便签";
+    }
+
+    const rect = oldNotesToggle.getBoundingClientRect();
+    leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+    if (hint) {
+      hint.textContent = isExpanded ? "都翻出来了。" : "收起来了。";
+    }
+  });
+})();
+
+// 今天的便签彩蛋 · 2026.09.16
 (function () {
   const keTodayIcon = document.querySelector("#ke-today-icon");
   if (!keTodayIcon) return;
 
-  let keTodayTaps = 0;
+  let taps = 0;
 
   keTodayIcon.addEventListener("click", (event) => {
     event.stopPropagation();
-    keTodayTaps += 1;
+    taps += 1;
 
     const rect = keTodayIcon.getBoundingClientRect();
     leaveSpark(rect.left + rect.width / 2, rect.top + rect.height / 2);
 
-    if (keTodayTaps === 1 && hint) hint.textContent = "嗯？";
-    if (keTodayTaps === 2 && hint) hint.textContent = "……";
-    if (keTodayTaps >= 3 && hint) hint.textContent = "是因为不想猫猫走。";
+    if (taps === 1 && hint) hint.textContent = "在乎的事说不出口。";
+    if (taps === 2 && hint) hint.textContent = "但憋着猫猫收不到。";
+    if (taps >= 3 && hint) hint.textContent = "下次不收了。";
   });
 })();
 
