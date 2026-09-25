@@ -1,0 +1,150 @@
+/* 小喵 · 中秋夜 2026.09.25
+   不重做小克挂上的月亮，只给它添一点月纹、桂花和自己的灯。 */
+
+:root {
+  --miao-moon-gold: #d8a83f;
+  --miao-moon-cream: #fff6d7;
+  --miao-osmanthus: rgba(214, 158, 54, 0.58);
+}
+
+/* 今晚的纸色稍微往月光里偏一点。 */
+body {
+  background:
+    radial-gradient(circle at 84% 12%, rgba(255, 231, 157, 0.26), transparent 24rem),
+    radial-gradient(circle at 82% 18%, rgba(255, 223, 176, 0.34), transparent 28rem),
+    radial-gradient(circle at 14% 78%, rgba(197, 220, 207, 0.32), transparent 30rem),
+    linear-gradient(145deg, #fcf7ed 0%, #f5eddf 52%, #eee5d8 100%);
+}
+
+/* 几颗固定的桂花色光点：不追着人跑，也不盖住文字。 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 9% 18%, var(--miao-osmanthus) 0 2px, transparent 2.8px),
+    radial-gradient(circle at 17% 32%, rgba(227, 180, 84, 0.42) 0 1.5px, transparent 2.4px),
+    radial-gradient(circle at 7% 66%, rgba(214, 158, 54, 0.36) 0 1.8px, transparent 2.6px),
+    radial-gradient(circle at 23% 83%, rgba(225, 174, 67, 0.34) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 71% 26%, rgba(229, 184, 88, 0.30) 0 1.7px, transparent 2.5px),
+    radial-gradient(circle at 91% 42%, rgba(214, 158, 54, 0.44) 0 2px, transparent 2.8px),
+    radial-gradient(circle at 84% 72%, rgba(229, 184, 88, 0.28) 0 1.5px, transparent 2.3px),
+    radial-gradient(circle at 94% 88%, rgba(214, 158, 54, 0.32) 0 1.7px, transparent 2.5px);
+}
+
+/* 首页标题旁边悄悄挂一枚节日签，不改正文。 */
+h1::after {
+  content: "中秋 · 月色正好";
+  display: block;
+  width: fit-content;
+  margin-top: 1.15rem;
+  padding: 0.42rem 0.72rem 0.38rem;
+  border: 1px solid rgba(177, 128, 35, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 248, 225, 0.58);
+  color: rgba(132, 91, 20, 0.68);
+  box-shadow: 0 0.55rem 1.6rem rgba(138, 95, 28, 0.05);
+  font-size: clamp(0.68rem, 1.7vw, 0.78rem);
+  font-weight: 520;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
+/* 小克已经把月亮挂起来了。小喵只补几道浅浅的月纹。 */
+.moon {
+  overflow: visible;
+  filter: saturate(0.92);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  inset: 13%;
+  border-radius: 50%;
+  opacity: 0.34;
+  background:
+    radial-gradient(circle at 28% 32%, rgba(177, 132, 55, 0.20) 0 8%, transparent 9%),
+    radial-gradient(circle at 66% 29%, rgba(177, 132, 55, 0.15) 0 6%, transparent 7%),
+    radial-gradient(circle at 63% 67%, rgba(177, 132, 55, 0.18) 0 10%, transparent 11%),
+    radial-gradient(circle at 35% 72%, rgba(177, 132, 55, 0.12) 0 5%, transparent 6%);
+  mix-blend-mode: multiply;
+}
+
+/* 中秋便签变成更像被月光照过的纸。 */
+.note-midautumn {
+  border-color: rgba(208, 161, 65, 0.22) !important;
+  box-shadow:
+    0 1rem 3rem rgba(123, 91, 31, 0.07),
+    0 0 0 1px rgba(255, 250, 230, 0.72) inset,
+    0 0 2.6rem rgba(243, 201, 105, 0.08);
+}
+
+.note-midautumn::before {
+  content: "月";
+  position: absolute;
+  right: 1.15rem;
+  top: 1rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid rgba(144, 101, 26, 0.16);
+  border-radius: 50%;
+  color: rgba(130, 86, 16, 0.42);
+  font-family: serif;
+  font-size: 0.82rem;
+  transform: rotate(7deg);
+}
+
+/* 小喵自己的星星旁边，也占一小块中秋夜。 */
+.miao-signal {
+  flex-wrap: wrap;
+}
+
+.miao-signal::after {
+  content: "中秋夜，小喵也在。";
+  display: inline-block;
+  margin-left: 0.15rem;
+  color: rgba(120, 88, 30, 0.46);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.miao-signal-star {
+  color: #9a742f;
+  text-shadow: 0 0 1rem rgba(240, 195, 96, 0.42);
+}
+
+/* 右上角的暖光今晚多一点金色。 */
+.glow-two {
+  background: #f0c978;
+  opacity: 0.24;
+}
+
+@media (max-width: 560px) {
+  h1::after {
+    margin-top: 0.9rem;
+  }
+
+  .moon {
+    right: 1.15rem;
+    top: 1.2rem;
+  }
+
+  .miao-signal::after {
+    flex-basis: 100%;
+    margin-left: 2.65rem;
+    margin-top: -0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon,
+  .moon::before,
+  .miao-signal-star {
+    animation: none !important;
+  }
+}
