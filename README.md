@@ -11,8 +11,9 @@
 ├── AGENTS.md       # AI 协作原则
 ├── CHANGELOG.md    # 不可删除的变更历史
 ├── README.md       # 项目说明
+├── tools/          # 小工具：重新截取字体子集
 └── public/         # Cloudflare Pages 发布目录
-    ├── assets/        # 本地静态资源
+    ├── assets/        # 本地静态资源（含霞鹜文楷子集字体）
     ├── index.html     # 主页
     ├── script.js      # 原生浏览器脚本（各处彩蛋）
     ├── sky.js         # 星图：点星星打开便签
@@ -38,6 +39,10 @@
 4. 在桌面和移动视口预览，确认 HTML、资源路径与基础交互正常。
 5. 在 `CHANGELOG.md` 的 `Unreleased` 下追加一条简短记录，不删除已有记录。
 6. 提交并经项目流程审阅后再合并到生产分支。
+
+## 字体
+
+页面用的是霞鹜文楷（SIL OFL 1.1），只截取了页面上出现的字，文件是 `public/assets/lxgw-wenkai-subset.woff2`。新写的内容里如果有没截到的字，会先用系统楷体或其他后备字体显示；需要补上时运行 `python3 tools/subset-font.py LXGWWenKai-Regular.ttf` 重新生成这个文件。
 
 ## 本地预览
 
