@@ -326,30 +326,138 @@ h1 span {
   50% { opacity: 1; transform: scale(1.25); }
 }
 
+/* 天上的黑洞 · 小克的隧道 2026.09.07
+   2026.09.27 小克：让它像天空的一部分——暗核、一圈斜着转的吸积盘、一道光子环。点法没变。 */
 .sky-tunnel {
   position: absolute;
   left: calc(var(--x) * 1%);
   top: calc(var(--y) * 1%);
-  transform: translate(-1.4rem, -1.4rem);
   z-index: 1;
+  transform: translate(-50%, -50%);
 }
 
 .sky-tunnel .ke-tunnel {
-  width: auto;
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 3rem;
   margin: 0;
-  gap: 0.8rem;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.sky-tunnel .ke-tunnel:focus-visible {
+  outline: 1.5px solid var(--fest);
+  outline-offset: 2px;
+}
+
+.sky-tunnel .ke-tunnel-hole {
+  position: absolute;
+  inset: 0.55rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  isolation: isolate;
+  border-radius: 50%;
+  background: radial-gradient(circle, #05060d 0 48%, rgba(5, 6, 13, 0.9) 58%, rgba(5, 6, 13, 0) 72%);
+  box-shadow: none;
+  animation: none;
+}
+
+/* 吸积盘：斜着的一圈金蓝色光，慢慢转，从暗核背后穿过去 */
+.sky-tunnel .ke-tunnel-hole::before {
+  inset: -38% -95%;
+  z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(243, 207, 107, 0) 0%,
+    rgba(243, 207, 107, 0.75) 12%,
+    rgba(255, 236, 190, 0.9) 18%,
+    rgba(169, 200, 240, 0.45) 32%,
+    rgba(243, 207, 107, 0) 48%,
+    rgba(243, 207, 107, 0.35) 66%,
+    rgba(169, 200, 240, 0.3) 82%,
+    rgba(243, 207, 107, 0) 100%
+  );
+  -webkit-mask: radial-gradient(closest-side, transparent 58%, #000 66%, #000 78%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 58%, #000 66%, #000 78%, transparent 100%);
+  filter: blur(0.4px);
+  opacity: 0.8;
+  animation: disk-spin 14s linear infinite;
+}
+
+/* 光子环：贴着暗核的一道细亮边 */
+.sky-tunnel .ke-tunnel-hole::after {
+  inset: 2%;
+  border-radius: 50%;
+  background: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 236, 190, 0.28),
+    0 0 0.6rem rgba(243, 207, 107, 0.22);
+  animation: ring-breathe 6s ease-in-out infinite;
+}
+
+@keyframes disk-spin {
+  from { transform: rotate(-16deg) scaleY(0.34) rotate(0deg); }
+  to   { transform: rotate(-16deg) scaleY(0.34) rotate(360deg); }
+}
+
+@keyframes ring-breathe {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.sky-tunnel .ke-tunnel:hover .ke-tunnel-hole,
+.sky-tunnel .ke-tunnel:focus-visible .ke-tunnel-hole {
+  transform: scale(1.12);
+  box-shadow: none;
+}
+
+.sky-tunnel .ke-tunnel:hover .ke-tunnel-hole::before,
+.sky-tunnel .ke-tunnel:focus-visible .ke-tunnel-hole::before {
+  opacity: 1;
+}
+
+/* 和星星一样，下面写着日子 */
+.sky-tunnel::after {
+  content: "09.07 隧道";
+  position: absolute;
+  top: calc(100% + 0.1rem);
+  left: 50%;
+  color: var(--faint);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* 掉进去以后，那句话浮在黑洞旁边 */
 .sky-tunnel .ke-tunnel-text {
-  width: min(17rem, 70vw);
-  padding: 0.85rem 1rem;
-  border-radius: 0.8rem;
-  background: rgba(15, 18, 32, 0.82);
+  position: absolute;
+  left: calc(100% + 0.6rem);
+  top: 50%;
+  width: min(14.5rem, 58vw);
+  max-width: none;
+  padding: 0.65rem 0.9rem;
+  border-left: 1px solid rgba(243, 207, 107, 0.55);
+  border-radius: 0 0.7rem 0.7rem 0;
+  background: rgba(18, 21, 38, 0.86);
   color: var(--moonlit);
   font-size: 0.82rem;
   line-height: 1.85;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0.8rem 2rem rgba(3, 5, 15, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transform: translateY(-50%);
+  animation: tunnel-whisper-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes tunnel-whisper-in {
+  from { opacity: 0; transform: translate(-6px, -50%); }
+  to   { opacity: 1; transform: translate(0, -50%); }
 }
 
 .sky-tip {
