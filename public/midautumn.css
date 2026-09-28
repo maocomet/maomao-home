@@ -7,13 +7,14 @@
   --miao-osmanthus: rgba(214, 158, 54, 0.58);
 }
 
-/* 今晚的纸色稍微往月光里偏一点。 */
+/* 今晚的纸色稍微往月光里偏一点。
+   2026.09.27 小克：主页换成夜空了，这层月光改成夜里的版本，位置和意思没变。 */
 body {
   background:
-    radial-gradient(circle at 84% 12%, rgba(255, 231, 157, 0.26), transparent 24rem),
-    radial-gradient(circle at 82% 18%, rgba(255, 223, 176, 0.34), transparent 28rem),
-    radial-gradient(circle at 14% 78%, rgba(197, 220, 207, 0.32), transparent 30rem),
-    linear-gradient(145deg, #fcf7ed 0%, #f5eddf 52%, #eee5d8 100%);
+    radial-gradient(circle at 84% 12%, rgba(255, 231, 157, 0.14), transparent 24rem),
+    radial-gradient(circle at 82% 18%, rgba(243, 207, 107, 0.08), transparent 28rem),
+    radial-gradient(circle at 10% 85%, rgba(120, 150, 200, 0.10), transparent 30rem),
+    linear-gradient(180deg, #1b2136 0%, #222640 55%, #2b2740 100%);
 }
 
 /* 几颗固定的桂花色光点：不追着人跑，也不盖住文字。 */
@@ -42,12 +43,13 @@ h1::after {
   width: fit-content;
   margin-top: 1.15rem;
   padding: 0.42rem 0.72rem 0.38rem;
-  border: 1px solid rgba(177, 128, 35, 0.18);
+  border: 1px solid rgba(243, 207, 107, 0.32);
   border-radius: 999px;
-  background: rgba(255, 248, 225, 0.58);
-  color: rgba(132, 91, 20, 0.68);
+  background: rgba(243, 207, 107, 0.08);
+  color: rgba(247, 222, 150, 0.85);
   box-shadow: 0 0.55rem 1.6rem rgba(138, 95, 28, 0.05);
   font-size: clamp(0.68rem, 1.7vw, 0.78rem);
+  font-family: ui-rounded, "PingFang SC", system-ui, sans-serif;
   font-weight: 520;
   letter-spacing: 0.16em;
   line-height: 1;
@@ -108,7 +110,7 @@ h1::after {
   content: "中秋夜，小喵也在。";
   display: inline-block;
   margin-left: 0.15rem;
-  color: rgba(120, 88, 30, 0.46);
+  color: rgba(243, 207, 107, 0.6);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
 }

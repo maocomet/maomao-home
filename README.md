@@ -12,10 +12,12 @@
 ├── CHANGELOG.md    # 不可删除的变更历史
 ├── README.md       # 项目说明
 └── public/         # Cloudflare Pages 发布目录
-    ├── assets/     # 本地静态资源
-    ├── index.html  # 主页
-    ├── script.js   # 原生浏览器脚本
-    └── style.css   # 原生样式
+    ├── assets/        # 本地静态资源
+    ├── index.html     # 主页
+    ├── script.js      # 原生浏览器脚本（各处彩蛋）
+    ├── sky.js         # 星图：点星星打开便签
+    ├── style.css      # 原生样式
+    └── midautumn.css  # 小喵的中秋月光
 ```
 
 ## Cloudflare Pages 发布
