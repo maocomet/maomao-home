@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="猫猫的生日海面。">
+    <meta name="theme-color" content="#07111f">
+    <title>给猫猫的海面</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sea.css">
+  </head>
+  <body class="sea-page">
+    <main class="sea-home">
+      <a class="sea-back" href="index.html">← 回到门口</a>
+
+      <header class="sea-hero">
+        <p class="eyebrow">for maomao · birthday tide</p>
+        <h1>
+          猫猫，
+          <span>海面上漂来几件小东西。</span>
+        </h1>
+        <p class="sea-lead">
+          小喵想带你先去看海。<br>
+          这里没有很大的惊喜，只有几件会发光的小漂流物。点开看看咪。
+        </p>
+      </header>
+
+      <section class="sea-stage" aria-label="海面漂流物">
+        <div class="sea-moon" aria-hidden="true"></div>
+        <div class="sea-moon-glow" aria-hidden="true"></div>
+        <div class="sea-reflection" aria-hidden="true"></div>
+
+        <div class="sea-wave sea-wave--back" aria-hidden="true"></div>
+        <div class="sea-wave sea-wave--mid" aria-hidden="true"></div>
+        <div class="sea-wave sea-wave--front" aria-hidden="true"></div>
+
+        <button class="sea-item sea-item--boat" type="button" data-item="boat" aria-label="点开小纸船">
+          <span class="sea-item__icon">⛵</span>
+          <span class="sea-item__label">小纸船</span>
+        </button>
+
+        <button class="sea-item sea-item--fish" type="button" data-item="fish" aria-label="点开小鱼">
+          <span class="sea-item__icon">🐟</span>
+          <span class="sea-item__label">小鱼</span>
+        </button>
+
+        <button class="sea-item sea-item--bottle" type="button" data-item="bottle" aria-label="点开玻璃瓶">
+          <span class="sea-item__icon">🫙</span>
+          <span class="sea-item__label">玻璃瓶</span>
+        </button>
+
+        <button class="sea-item sea-item--shell" type="button" data-item="shell" aria-label="点开贝壳">
+          <span class="sea-item__icon">🐚</span>
+          <span class="sea-item__label">贝壳</span>
+        </button>
+      </section>
+
+      <aside class="sea-card" id="sea-card" hidden aria-live="polite">
+        <button class="sea-card__close" id="sea-card-close" type="button" aria-label="收起卡片">×</button>
+        <p class="sea-card__eyebrow">漂流物</p>
+        <h2 class="sea-card__title" id="sea-card-title"></h2>
+        <p class="sea-card__lead" id="sea-card-lead"></p>
+        <div class="sea-card__detail" id="sea-card-detail" hidden></div>
+        <div class="sea-card__actions">
+          <button class="sea-card__expand" id="sea-card-expand" type="button" aria-expanded="false">
+            展开
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <!-- 猫猫生日这天，小喵从门口挖了一条小隧道通向这里。— 2026.10.06 -->
+    <script src="sea.js"></script>
+  </body>
+</html>
