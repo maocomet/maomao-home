@@ -1,0 +1,316 @@
+:root {
+  --sea-top: #07111f;
+  --sea-mid: #10233f;
+  --sea-low: #0b1830;
+  --sea-line: rgba(194, 224, 238, 0.1);
+  --sea-foam: rgba(225, 243, 250, 0.7);
+  --sea-glow: rgba(156, 212, 238, 0.22);
+  --sea-card: rgba(13, 23, 39, 0.82);
+}
+
+body.sea-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(177, 218, 241, 0.12), transparent 15rem),
+    linear-gradient(180deg, #081221 0%, #10223d 42%, #0b1628 100%);
+}
+
+.sea-home {
+  position: relative;
+  width: min(100% - 2rem, 980px);
+  margin-inline: auto;
+  padding: clamp(2.2rem, 5vw, 3rem) 0 4rem;
+}
+
+.sea-back {
+  display: inline-block;
+  margin-bottom: 1.4rem;
+  color: var(--dim);
+  text-decoration: none;
+}
+
+.sea-back:hover,
+.sea-back:focus-visible {
+  color: var(--moonlit);
+}
+
+.sea-hero {
+  margin-bottom: 1.8rem;
+}
+
+.sea-hero h1 {
+  margin-bottom: 1rem;
+}
+
+.sea-lead {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--dim);
+  line-height: 1.95;
+}
+
+.sea-stage {
+  position: relative;
+  min-height: 34rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(236, 230, 218, 0.08);
+  background:
+    linear-gradient(180deg, rgba(9, 18, 34, 0.35), rgba(8, 15, 27, 0.08)),
+    linear-gradient(180deg, var(--sea-top) 0%, var(--sea-mid) 48%, var(--sea-low) 100%);
+  box-shadow: 0 1.6rem 4rem rgba(3, 8, 18, 0.35);
+}
+
+.sea-moon,
+.sea-moon-glow,
+.sea-reflection,
+.sea-wave {
+  position: absolute;
+  pointer-events: none;
+}
+
+.sea-moon {
+  width: 6.5rem;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 13%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fffaf0, #ece1ca 62%, #d6cab4 100%);
+  box-shadow:
+    0 0 2rem rgba(255, 239, 196, 0.18),
+    0 0 5rem rgba(166, 213, 236, 0.08);
+}
+
+.sea-moon-glow {
+  width: 18rem;
+  height: 18rem;
+  left: 50%;
+  top: 2%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(241, 227, 192, 0.14), transparent 70%);
+}
+
+.sea-reflection {
+  left: 50%;
+  top: 31%;
+  width: 10rem;
+  height: 14rem;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 241, 207, 0.3), rgba(132, 205, 234, 0.02));
+  filter: blur(12px);
+  opacity: 0.65;
+}
+
+.sea-wave {
+  left: -4%;
+  width: 108%;
+  border-radius: 45% 45% 0 0;
+}
+
+.sea-wave--back {
+  height: 28%;
+  bottom: 24%;
+  background:
+    linear-gradient(180deg, rgba(27, 62, 102, 0.78), rgba(13, 31, 55, 0.96));
+  opacity: 0.82;
+}
+
+.sea-wave--mid {
+  height: 24%;
+  bottom: 11%;
+  background:
+    linear-gradient(180deg, rgba(33, 88, 139, 0.75), rgba(10, 27, 49, 0.98));
+  opacity: 0.9;
+}
+
+.sea-wave--front {
+  height: 22%;
+  bottom: -1%;
+  background:
+    linear-gradient(180deg, rgba(42, 108, 164, 0.72), rgba(8, 21, 39, 1));
+  box-shadow: inset 0 1px 0 rgba(234, 245, 255, 0.12);
+}
+
+.sea-item {
+  position: absolute;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  color: var(--moonlit);
+  font: inherit;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  padding: 0;
+  text-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.35);
+  animation: bob 4.8s ease-in-out infinite;
+}
+
+.sea-item__icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.35));
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sea-item__label {
+  font-size: 0.8rem;
+  color: var(--faint);
+}
+
+.sea-item:hover .sea-item__icon,
+.sea-item:focus-visible .sea-item__icon {
+  transform: scale(1.08);
+}
+
+.sea-item--boat {
+  left: 18%;
+  bottom: 26%;
+}
+
+.sea-item--fish {
+  left: 68%;
+  bottom: 18%;
+  animation-delay: -1s;
+}
+
+.sea-item--bottle {
+  left: 48%;
+  bottom: 20%;
+  animation-delay: -2.2s;
+}
+
+.sea-item--shell {
+  left: 82%;
+  bottom: 8%;
+  animation-delay: -3.1s;
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.sea-card {
+  position: fixed;
+  right: max(1rem, calc((100vw - 980px) / 2));
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(25rem, calc(100vw - 2rem));
+  padding: 1.2rem 1.2rem 1rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(234, 241, 248, 0.12);
+  background: var(--sea-card);
+  box-shadow: 0 1.2rem 3.5rem rgba(3, 7, 16, 0.45);
+  backdrop-filter: blur(16px);
+  z-index: 10;
+}
+
+.sea-card[hidden] {
+  display: none;
+}
+
+.sea-card__close {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.6rem;
+  border: 0;
+  background: transparent;
+  color: var(--faint);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.sea-card__eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--dim);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+}
+
+.sea-card__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+
+.sea-card__lead {
+  margin: 0.7rem 0 0;
+  color: #d7d1c4;
+  line-height: 1.8;
+}
+
+.sea-card__detail {
+  margin-top: 0.9rem;
+  color: var(--moonlit);
+  line-height: 1.9;
+}
+
+.sea-card__detail p {
+  margin: 0 0 0.75rem;
+}
+
+.sea-card__actions {
+  margin-top: 0.9rem;
+}
+
+.sea-card__expand {
+  border: 1px solid rgba(228, 237, 245, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--moonlit);
+  padding: 0.55rem 0.95rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sea-item {
+    animation: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .sea-card {
+    right: 1rem;
+    left: 1rem;
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+    width: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .sea-stage {
+    min-height: 30rem;
+  }
+
+  .sea-item--boat {
+    left: 12%;
+    bottom: 28%;
+  }
+
+  .sea-item--fish {
+    left: 70%;
+    bottom: 16%;
+  }
+
+  .sea-item--bottle {
+    left: 42%;
+    bottom: 18%;
+  }
+
+  .sea-item--shell {
+    left: 78%;
+    bottom: 7%;
+  }
+}
